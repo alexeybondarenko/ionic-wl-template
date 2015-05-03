@@ -1,0 +1,39 @@
+{
+  "name": "cordova-template",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "cordova": "^5.0.0"
+  },
+  "devDependencies": {
+    "elementtree": "^0.1.6",
+    "fs": "0.0.2",
+    "glob": "^5.0.5",
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-compass": "^2.0.4",
+    "gulp-connect": "^2.2.0",
+    "gulp-shell": "^0.4.1",
+    "gulp-watch": "^4.2.4",
+    "lodash": "^3.8.0",
+    "mkdirp": "^0.5.0",
+    "ncp": "^2.0.0",
+    "orchestrator": "^0.3.7",
+    "path": "^0.11.14",
+    "plist": "^1.1.0",
+    "run-sequence": "^1.1.0",
+    "sys": "0.0.1",
+    "yargs": "^3.8.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "cordovaPlugins": [
+    "org.apache.cordova.device",
+    "org.apache.cordova.console",
+    "com.ionic.keyboard"
+  ]
+}
