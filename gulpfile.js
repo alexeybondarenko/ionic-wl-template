@@ -10,7 +10,9 @@ var shell = require('gulp-shell');
 var clean = require('gulp-clean');
 
 var params = {
-  target: argv.target
+  target: argv.target || argv.t,
+  command: argv.command || argv.c,
+  platform: argv.platform || argv.p
 };
 
 var paths = {
@@ -86,7 +88,7 @@ gulp.task('copy-to-www', function () {
 // add platform from dist/package.json file
 gulp.task('platform-add', function () {
   var p = require ('./dist/package.json');
-  var tasks = ['ls'];
+  var tasks = [];
   if (p.platforms) {
     p.platforms.forEach(function (item) {
       tasks.push('cordova platform add '+item);
@@ -95,6 +97,20 @@ gulp.task('platform-add', function () {
   return gulp.src('')
     .pipe(shell(tasks, {cwd: './dist'}));
 });
+gulp.task('cordova', function () {
+  var commands = params.command;
+  if (commands) {
+    commands = 'cordova ' + commands.split(':').join(' ');
+    return gulp.src('').pipe(shell([commands], {cwd: './dist'}));
+  }
+  return false;
+});
 gulp.task('build', function (cb) {
   return runSequence('default', 'copy-to-www', 'copy-sources','platform-add',cb);
+});
+gulp.task('run', function (cb) {
+  if (params.platform) {
+    params.command = 'emulate:'+params.platform;
+    return runSequence('build', 'cordova', cb);
+  }
 });
