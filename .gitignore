@@ -8,3 +8,4 @@ node_modules
 dist
 .idea
 common/app/bower_components
+atlassian-ide-plugin.xml
